@@ -1,0 +1,32 @@
+@import "../../../common/extends";
+@import "../../../common/variables";
+
+.provider {
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  column-gap: $gap;
+  justify-self: center;
+  align-items: center;
+  &__google {
+    @extend %button;
+    font-size: 1.5rem;
+    background-color: $black;
+    color: $white;
+    padding: 0.2em 0.4em;
+    border-radius: 10px;
+    &:hover {
+      color: $main;
+    }
+  }
+  &__github {
+    @extend %button;
+    font-size: 1.5rem;
+    background-color: $black;
+    color: $white;
+    padding: 0.2em 0.4em;
+    border-radius: 10px;
+    &:hover {
+      color: $main;
+    }
+  }
+}

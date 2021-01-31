@@ -1,0 +1,62 @@
+@import "./variables";
+
+%loginLabel {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: $black;
+  transition: 0.2s ease-in-out;
+}
+%loginInput {
+  outline: none;
+  border: none;
+  font-size: 1.3rem;
+  color: $black;
+  background-color: transparent;
+  padding: 0.4em $gap;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-transition: background-color 9999s ease-out;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: $black !important;
+  }
+}
+%button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+%loginbtn {
+  @extend %button;
+  border-radius: 10px;
+  padding: 0.4em $gap;
+  color: $grey;
+  &:hover {
+    color: $main;
+  }
+}
+%navLink {
+  text-decoration: none;
+  color: $white;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    color: $main;
+  }
+}
+%psudo {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: $grey;
+}
+%mainGrid {
+  display: grid;
+  padding: 5rem $gap;
+  height: 100vh;
+  background-color: $white;
+}

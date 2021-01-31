@@ -1,15 +1,20 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBExWAJpozBWvZt-hb8yERjzorvdvfrutw",
-    authDomain: "businesscard-cd740.firebaseapp.com",
-    projectId: "businesscard-cd740",
-    storageBucket: "businesscard-cd740.appspot.com",
-    messagingSenderId: "514367982615",
-    appId: "1:514367982615:web:4d486c53c6b20241412052",
-    measurementId: "G-HR58QNS6EL"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDERID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
   };
 
-firebase.initializeApp(firebaseConfig);
+export default firebase.initializeApp(firebaseConfig);
+export const firebaseInstance = firebase;
+export const authService = firebase.auth();
+export const dbServie = firebase.firestore();
+export const storageService = firebase.storage();

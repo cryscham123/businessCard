@@ -1,0 +1,88 @@
+@import "../../../common/_extends.scss";
+@import "../../../common/_variables.scss";
+
+.loginheader {
+  position: fixed;
+  background-color: $black;
+  width: 100%;
+  padding: $gap;
+  display: flex;
+  justify-content: center;
+  color: $white;
+  z-index: 4;
+}
+.login {
+  @extend %mainGrid;
+  position: relative;
+  display: grid;
+  grid-template-rows: repeat(3, max-content);
+  row-gap: $gap;
+  justify-content: center;
+  justify-items: flex-start;
+  &__title {
+    margin-top: 1.5rem;
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: $black;
+    border-bottom: 3px solid $main;
+    padding-bottom: 0.2em;
+  }
+  &__form {
+    display: grid;
+    grid-template-rows: repeat(3, min-content);
+    row-gap: $gap;
+    margin-top: 3.5em;
+    &__email {
+      border-bottom: 2px solid $main;
+      &__label {
+        @extend %loginLabel;
+      }
+      &__input {
+        @extend %loginInput;
+      }
+      &:focus-within &__label {
+        color: $main;
+      }
+    }
+    &__password {
+      border-bottom: 2px solid $main;
+      &__label {
+        @extend %loginLabel;
+      }
+      &__input {
+        @extend %loginInput;
+      }
+      &:focus-within &__label {
+        color: $main;
+      }
+    }
+    &__submit {
+      @extend %button;
+      background-color: $black;
+      color: $white;
+      font-size: 1.3rem;
+      border-radius: 10px;
+      padding: 0.2em $gap;
+      &:hover {
+        color: $main;
+      }
+    }
+  }
+  &__btn {
+    justify-self: stretch;
+    &__toggle {
+      @extend %loginbtn;
+      &:hover {
+        color: $main;
+      }
+    }
+    &__find {
+      @extend %loginbtn;
+      float: right;
+      &:hover {
+        color: $main;
+      }
+    }
+    margin-bottom: 3.5em;
+  }
+}

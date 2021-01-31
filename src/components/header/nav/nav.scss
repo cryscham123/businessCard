@@ -1,0 +1,115 @@
+@import "../../../common/extends";
+@import "../../../common/variables";
+@import "../../../common/mixins";
+
+.nav {
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  background-color: $black;
+  padding: $gap;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  @include responsible("small") {
+    padding: $gap 1.6em;
+  }
+  &__home {
+    @extend %navLink;
+  }
+  &__bars {
+    @extend %button;
+    font-size: 1.7rem;
+    color: $white;
+    @include responsible("medium") {
+      display: none;
+    }
+    @include responsible("large") {
+      display: none;
+    }
+    &:hover {
+      color: $main;
+    }
+  }
+  &__user {
+    @extend %button;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: $gap;
+    align-items: center;
+    @include responsible("small") {
+      display: none;
+    }
+    &__profile {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+    }
+    &__icon {
+      font-size: 1.5rem;
+      color: $white;
+    }
+    &:focus + .nav__menu {
+      opacity: 1;
+      z-index: 3;
+      transform: translateY(5px);
+    }
+  }
+  &__menu {
+    position: absolute;
+    transform: translateY(-5px);
+    background-color: $black;
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    opacity: 0;
+    z-index: -1;
+    top: 110%;
+    right: 0.8%;
+    border: 1px solid $grey;
+    border-radius: 10px 0 10px 10px;
+    transition: 0.2s ease-in-out;
+    @include responsible("small") {
+      width: 100%;
+      top: 100%;
+      right: 0;
+      border: none;
+      border-radius: 0;
+      opacity: 0;
+      z-index: -1;
+      transform: translateX(100%);
+    }
+    &__profile {
+      padding: $gap;
+      text-align: center;
+      @include responsible("small") {
+        display: none;
+      }
+      &__text {
+        color: $grey;
+        font-size: 0.8rem;
+      }
+      &__name {
+        color: $white;
+        font-size: 1rem;
+      }
+    }
+    &__seeprofile {
+      @extend %navLink;
+      padding: $gap;
+      border-top: 1px solid $grey;
+      border-bottom: 1px solid $grey;
+      text-align: center;
+    }
+    &__signout {
+      @extend %button;
+      padding: $gap;
+      color: $white;
+      font-size: 1rem;
+      &:hover {
+        color: $main;
+      }
+    }
+  }
+}
