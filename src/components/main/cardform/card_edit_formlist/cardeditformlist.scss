@@ -1,0 +1,6 @@
+@import "../../../../common/extends";
+@import "../../../../common/variables";
+
+.cardeditformList {
+  @extend %mainList;
+}

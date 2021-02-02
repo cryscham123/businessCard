@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { authService } from "../../../fbase";
+import { authService } from "../../../service/fbase";
 import "./password.scss";
 
 const Password = ({ resetRef }) => {

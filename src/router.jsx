@@ -6,7 +6,7 @@ import Profile from "./router/profile/profile";
 import Nav from './components/header/nav/nav';
 
 
-const Approuter = ({isLogin,userobj}) => {
+const Approuter = ({isLogin,userobj,onAuth,FileIput}) => {
     return (
         <Router>
         <Switch>
@@ -14,7 +14,7 @@ const Approuter = ({isLogin,userobj}) => {
             <>
               <Nav userobj={userobj}/>
             <Route exact path="/">
-              <Home />
+                <Home FileIput={FileIput}/>
             </Route>
             <Route path="/profile">
                 <Profile userobj={userobj} />
@@ -22,7 +22,7 @@ const Approuter = ({isLogin,userobj}) => {
           </>
           :
           <Route exact path="/">
-            <Login />
+              <Login onAuth={onAuth}/>
           </Route>
           }
         </Switch>

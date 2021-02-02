@@ -1,5 +1,5 @@
 import React from 'react';
-import { authService } from '../../fbase';
+import { authService } from '../../service/fbase';
 import { useHistory } from "react-router-dom";
 import "./profile.scss";
 

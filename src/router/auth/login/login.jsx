@@ -1,11 +1,11 @@
 import React, {useState,useRef} from 'react';
 import Maintitle from "../../../components/header/title/title";
-import { authService } from "../../../fbase";
+import { authService } from "../../../service/fbase";
 import Password from '../password/password';
 import Provider from '../provider/provider';
 import "./login.scss";
 
-const Login = () => {
+const Login = ({onAuth}) => {
     // account state
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,21 +20,12 @@ const Login = () => {
         }
     }
     // login handle
-    const onSubmit = async(e) => {
+    const onSubmit = e => {
         e.preventDefault();
-        try {
-            let data
-            if (isNewAccount) {
-                data = await authService.createUserWithEmailAndPassword(
-                    email, password
-                )
-            } else {
-                data = await authService.signInWithEmailAndPassword(
-                    email,password
-                )
-            }
-        } catch (error) {
-            window.alert(error.message);
+        if (isNewAccount) {
+            onAuth.login("emailCreate", [email, password])
+        } else {
+            onAuth.login("emailLogin",[email,password])
         }
     }
     //toggle
@@ -105,7 +96,7 @@ const Login = () => {
                 </button>
             </div>
                 <Password resetRef={resetRef} />
-                <Provider />
+                <Provider onAuth={onAuth}/>
             </div>
         </>
     );

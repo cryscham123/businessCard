@@ -1,0 +1,7 @@
+@import "../../../../common/extends";
+@import "../../../../common/variables";
+@import "../../../../common/mixins";
+
+.cardlist {
+  @extend %mainList;
+}

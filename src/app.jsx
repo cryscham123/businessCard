@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from "react";
 import "./app.scss";
-import { authService } from "./fbase";
+import { authService } from "./service/fbase";
 import Loading from "./components/loading/loading";
 import Approuter from "./router";
 import Footer from "./components/footer/footer";
 
-function App() {
+function App({FileIput, onAuth}) {
   const [isLogin, setIsLogin] = useState(false);
   const [init,setInit] = useState(false)
   const [userobj, setUserobj] = useState(null);
@@ -27,7 +27,7 @@ function App() {
   <>
     {
         init ?<>
-          <Approuter isLogin={isLogin} userobj={userobj} />
+          <Approuter isLogin={isLogin} userobj={userobj} onAuth={onAuth} FileIput={FileIput}/>
           <Footer />
           </>
       : <Loading />

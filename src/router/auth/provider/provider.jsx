@@ -1,37 +1,26 @@
 import React from 'react';
 import "./provider.scss";
-import { firebaseInstance,authService } from "../../../fbase";
 
-const Provider = () => {
-    const googleLogin = async () => {
-        const provider = new firebaseInstance.auth.GoogleAuthProvider();
-        try {
-            const result = await authService.signInWithPopup(provider)
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
-    const githubLogin = async () => {
-        const provider = new firebaseInstance.auth.GithubAuthProvider();
-        try {
-            const result = await authService.signInWithPopup(provider)
-        } catch (error) {
-            console.log(error.message);
-        }
+const Provider = ({ onAuth }) => {
+    const authLogin = e => {
+        let { target: { name } } = e;
+        onAuth.login("provider", name);
     }
     return (
         <div className="provider">
             <button
                 className="provider__google"
-                onClick={googleLogin}
+                name="Google"
+                onClick={authLogin}
             >
-                <i className="fab fa-google"></i>
+                <i className="fab fa-google provider__google__icon"></i>
             </button>
             <button
                 className="provider__github"
-                onClick={githubLogin}
+                name="Github"
+                onClick={authLogin}
             >
-                <i className="fab fa-github"></i>
+                <i className="fab fa-github provider__github__icon"></i>
             </button>
         </div>
     );

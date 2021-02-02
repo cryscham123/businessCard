@@ -1,6 +1,13 @@
 @import "../../common/extends";
 @import "../../common/variables";
+@import "../../common/mixins";
 
 .home {
   @extend %mainGrid;
+  background-color: $grey;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.2em;
+  @include responsible("small") {
+    grid-template-columns: 1fr;
+  }
 }

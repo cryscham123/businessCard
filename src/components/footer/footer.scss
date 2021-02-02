@@ -2,8 +2,6 @@
 @import "../../common/variables";
 
 .footer {
-  position: absolute;
-  bottom: 0;
   background-color: black;
   width: 100%;
   color: $grey;
@@ -11,5 +9,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 0;
+  padding: 1.6rem 0;
 }

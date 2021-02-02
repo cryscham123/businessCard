@@ -56,7 +56,42 @@
 }
 %mainGrid {
   display: grid;
-  padding: 5rem $gap;
-  height: 100vh;
+  padding-top: 4.2rem;
   background-color: $white;
+  min-height: 100vh;
+}
+%mainsection {
+  display: grid;
+  grid-template-rows: repeat(2, max-content);
+  justify-items: center;
+  padding: $gap;
+  background-color: #dff9fb;
+  &__name {
+    padding: $gap;
+    color: $black;
+  }
+}
+%mainList {
+  display: grid;
+  grid-auto-rows: 1fr;
+  padding: $gap;
+  row-gap: $gap;
+  justify-items: center;
+  width: 400px;
+}
+%editInput {
+  border: none;
+  outline: none;
+  background-color: $white;
+  font-size: 0.8rem;
+  color: $black;
+  padding: 0.2em $gap;
+}
+%editRadio {
+  padding: 0.2em $gap;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    color: $main;
+  }
 }

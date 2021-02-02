@@ -17,6 +17,9 @@
     &:hover {
       color: $main;
     }
+    &__icon {
+      pointer-events: none;
+    }
   }
   &__github {
     @extend %button;
@@ -27,6 +30,9 @@
     border-radius: 10px;
     &:hover {
       color: $main;
+    }
+    &__icon {
+      pointer-events: none;
     }
   }
 }
