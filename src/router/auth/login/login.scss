@@ -13,6 +13,7 @@
 }
 .login {
   @extend %mainGrid;
+  height: 90.5vh;
   position: relative;
   display: grid;
   grid-template-rows: repeat(3, max-content);

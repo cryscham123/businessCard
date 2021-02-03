@@ -1,48 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cardform from '../../components/main/cardform/cardform';
 import Preview from '../../components/main/preview/preview';
 import "./home.scss";
 
-const Home = ({FileIput}) => {
-    const [cards, setCards] = useState({
-        '1':{
-            id: 1,
-            name: "TomKim",
-            company: "bedal's party",
-            theme: "dark",
-            title: "Software Emgineer",
-            email: 'cryscham123@naver.com',
-            message: "what",
-            fileName: "tomkim",
-            fileURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6affXwdu79nsCKnaRYrbRuY8DKGw52nOaXw&usqp=CAU",
-        },
-        '2':{
-            id: 2,
-            name: "TomKim",
-            company: "bedal's party",
-            theme: "light",
-            title: "Software Emgineer",
-            email: 'cryscham123@naver.com',
-            message: "what",
-            fileName: "tomkim",
-            fileURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6affXwdu79nsCKnaRYrbRuY8DKGw52nOaXw&usqp=CAU",
-        },
-        '3':{
-            id: 3,
-            name: "TomKim",
-            company: "bedal's party",
-            theme: "dark",
-            title: "Software Emgineer",
-            email: 'cryscham123@naver.com',
-            message: "whatdaskjklslsjlk",
-            fileName: "tomkim",
-            fileURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6affXwdu79nsCKnaRYrbRuY8DKGw52nOaXw&usqp=CAU",
-        }
-    });
+const Home = ({ FileInput, userobj, cardRef }) => {
+    const { uid } = userobj;
+    const [cards, setCards] = useState({});
+    useEffect(() => {
+        const stopSync = cardRef.syncCards(uid, cards => setCards(cards))
+        return () => stopSync()
+    }, [uid, cardRef])
     const handleInfo = value => {
         setCards(prev => {
             const added = { ...prev };
             added[value.id] = value;
+            cardRef.saveCard(uid, added);
             return added;
         })
     }
@@ -50,6 +22,7 @@ const Home = ({FileIput}) => {
         setCards(prev => {
             const deleted = { ...prev };
             delete deleted[value];
+            cardRef.deleteCard(uid);
             return deleted;
         });
     }
@@ -57,12 +30,13 @@ const Home = ({FileIput}) => {
         setCards(prev => {
             const updated = { ...prev };
             updated[value.id][value.name] = value.value;
+            cardRef.saveCard(uid, updated);
             return updated;
         });
     }
     return (
         <div className="home">
-            <Cardform FileIput={FileIput} cards={cards} onInfo={handleInfo} onDelete={handleDelete} updateCard={handleUpdate}/>
+            <Cardform FileInput={FileInput} cards={cards} onInfo={handleInfo} onDelete={handleDelete} updateCard={handleUpdate}/>
             <Preview cards={cards} />
         </div>
     );

@@ -5,7 +5,7 @@ import Loading from "./components/loading/loading";
 import Approuter from "./router";
 import Footer from "./components/footer/footer";
 
-function App({FileIput, onAuth}) {
+function App({FileInput, onAuth, cardRef}) {
   const [isLogin, setIsLogin] = useState(false);
   const [init,setInit] = useState(false)
   const [userobj, setUserobj] = useState(null);
@@ -22,12 +22,12 @@ function App({FileIput, onAuth}) {
         setIsLogin(false);
       }
       setInit(true);
-    })},[])
+    })},[authService])
   return (
   <>
     {
         init ?<>
-          <Approuter isLogin={isLogin} userobj={userobj} onAuth={onAuth} FileIput={FileIput}/>
+          <Approuter isLogin={isLogin} userobj={userobj} onAuth={onAuth} FileInput={FileInput} cardRef={cardRef}/>
           <Footer />
           </>
       : <Loading />

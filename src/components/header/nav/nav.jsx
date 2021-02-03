@@ -1,5 +1,5 @@
 import React,{useRef,useState} from 'react';
-import { NavLink,Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Maintitle from '../title/title';
 import "./nav.scss";
 import { authService } from '../../../service/fbase';
@@ -67,23 +67,9 @@ const Nav = ({ userobj }) => {
                         <p className="nav__menu__profile__text">Signed in as</p>
                         <p className="nav__menu__profile__name">{userobj.displayName}</p>
                     </span>
-                    <NavLink
-                        to="/profile"
-                        activeStyle={{
-                            color: "#38ada9"
-                        }}
-                        className="nav__menu__seeprofile"
-                    >Your Profile</NavLink>
                     <button onClick={signout} className="nav__menu__signout">Sign out</button>
                 </div>
                 <div className="nav__smallMenu" ref={menuRef}>
-                    <NavLink
-                        to="/profile"
-                        activeStyle={{
-                            color: "#38ada9"
-                        }}
-                        className="nav__smallMenu__seeprofile"
-                    >Your Profile</NavLink>
                     <button onClick={signout} className="nav__smallMenu__signout">Sign out</button>
                 </div>
             </div>

@@ -84,17 +84,6 @@
       font-size: 0.8rem;
       resize: none;
     }
-    &__img {
-      grid-column: span 3;
-      @extend %editInput;
-      text-align: center;
-      background-color: pink;
-      transition: 0.2s ease-in-out;
-      cursor: pointer;
-      &:hover {
-        color: $main;
-      }
-    }
     &__btn {
       grid-column: span 3;
       @extend %editInput;

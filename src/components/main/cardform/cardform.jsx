@@ -2,7 +2,7 @@ import React from 'react';
 import "./cardform.scss";
 import CardeditformList from './card_edit_formlist/cardeditformList';
 
-const Cardform = ({ FileIput,cards,onInfo,onDelete,updateCard }) => {
+const Cardform = ({ FileInput,cards,onInfo,onDelete,updateCard }) => {
     const handleInfo = value => {
         onInfo(value);
     }
@@ -15,7 +15,7 @@ const Cardform = ({ FileIput,cards,onInfo,onDelete,updateCard }) => {
     return (
         <section className="edit">
             <h3 className="edit__name">Card Maker</h3>
-            <CardeditformList FileIput={FileIput} cards={cards} onInfo={handleInfo} onDelete={handleDelete} updateCard={handleCard}/>
+            <CardeditformList FileInput={FileInput} cards={cards} onInfo={handleInfo} onDelete={handleDelete} updateCard={handleCard}/>
         </section>
     );
 };

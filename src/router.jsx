@@ -2,11 +2,10 @@ import React from 'react';
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./router/home/home";
 import Login from "./router/auth/login/login";
-import Profile from "./router/profile/profile";
 import Nav from './components/header/nav/nav';
 
 
-const Approuter = ({isLogin,userobj,onAuth,FileIput}) => {
+const Approuter = ({isLogin,userobj,onAuth,FileInput, cardRef}) => {
     return (
         <Router>
         <Switch>
@@ -14,10 +13,7 @@ const Approuter = ({isLogin,userobj,onAuth,FileIput}) => {
             <>
               <Nav userobj={userobj}/>
             <Route exact path="/">
-                <Home FileIput={FileIput}/>
-            </Route>
-            <Route path="/profile">
-                <Profile userobj={userobj} />
+                <Home FileInput={FileInput} userobj={userobj} cardRef={cardRef}/>
             </Route>
           </>
           :

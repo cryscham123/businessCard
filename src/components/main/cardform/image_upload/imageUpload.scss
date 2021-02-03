@@ -1,0 +1,64 @@
+@import "../../../../common/extends";
+@import "../../../../common/variables";
+
+.imageUploader {
+  grid-column: span 3;
+  background-color: $white;
+  display: flex;
+  &__input {
+    @extend %editInput;
+    flex-basis: 100%;
+    text-align: center;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      color: $main;
+    }
+  }
+}
+.isLoading {
+  padding: 0.2em $gap;
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__svg {
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    animation: wrapper 1.5s ease-in-out infinite;
+    circle {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke-width: 2px;
+      transform: translate(2px, 2px);
+      stroke-linecap: round;
+      stroke-dasharray: 32px;
+      stroke-dashoffset: 32px;
+      stroke: $grey;
+      animation: circleAni 3s ease-in-out infinite;
+    }
+  }
+}
+@keyframes wrapper {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes circleAni {
+  0%,
+  100% {
+    stroke-dashoffset: 32px;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+  }
+  50.1% {
+    stroke-dashoffset: 64px;
+  }
+}

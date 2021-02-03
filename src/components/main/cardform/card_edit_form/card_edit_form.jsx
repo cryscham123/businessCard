@@ -1,8 +1,8 @@
 import React,{useRef,useState} from 'react';
 import "./card_edit_form.scss";
 
-const CardEditForm = ({ FileIput,card, isNew, onInfo, onDelete,updateCard }) => {
-    const { id, name, company, theme, title, email, message } = card;
+const CardEditForm = ({ FileInput,card, isNew, onInfo, onDelete,updateCard }) => {
+    const { id, name, company, theme, title, email, message, fileURL } = card;
     // handle theme
     const [newTheme, setNewTheme] = useState(theme);
     const menuRef = useRef();
@@ -68,18 +68,12 @@ const CardEditForm = ({ FileIput,card, isNew, onInfo, onDelete,updateCard }) => 
         }
     }
     //image handle
+    const defaultURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6affXwdu79nsCKnaRYrbRuY8DKGw52nOaXw&usqp=CAU"
     const [attachment, setAttachment] = useState("");
-    const onFileChange = e => {
-        const { target: { files } } = e;
-        const real = files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(real);
-        reader.onloadend = finishedEvent => {
-            const { currentTarget: { result } } = finishedEvent;
-            setAttachment(result);
+    const handleImage = value => {
+            setAttachment(value);
+            !isNew && updateCard({ id,name:"fileURL",value });
         }
-        !isNew && updateCard({ id,name:"fileURL",value:attachment });
-    }
     //handle form
     const onSubmit = e => {
         e.preventDefault();
@@ -95,7 +89,7 @@ const CardEditForm = ({ FileIput,card, isNew, onInfo, onDelete,updateCard }) => 
             email: newEmail,
             message: newMessage,
             fileName: newName,
-            fileURL: attachment || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6affXwdu79nsCKnaRYrbRuY8DKGw52nOaXw&usqp=CAU",
+            fileURL: attachment || defaultURL,
         }
         onInfo(info);
     }
@@ -127,8 +121,7 @@ const CardEditForm = ({ FileIput,card, isNew, onInfo, onDelete,updateCard }) => 
                 <input required placeholder="Your job" onChange={handletexts} name="title" type="text" className="cardEditForm__form__title" defaultValue={title || ""} />
                 <input required placeholder="Your email" onChange={handletexts} name="email" type="email" className="cardEditForm__form__email" defaultValue={email || ""} />
                 <textarea required placeholder="100 texts limit..." onChange={handletexts} name="message" type="text" wrap="hard" className="cardEditForm__form__message" defaultValue={message || ""}></textarea>
-                <label htmlFor={id + "img"} className="cardEditForm__form__img">{attachment ? "choosed" : "Choose file" }</label>
-                <input id={id+"img"} type="file" accept="image/*" style={{display:"none"}} onChange={onFileChange}/>
+                <FileInput id={id} fileURL={fileURL} onImage={handleImage}/>
                 {isNew ?
                     <input type="submit" className="cardEditForm__form__btn" value="Add" />
                     : <button type="button" className="cardEditForm__form__btn" onClick={handleDelete}>Delete</button>
