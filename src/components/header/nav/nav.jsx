@@ -1,11 +1,11 @@
-import React,{useRef,useState} from 'react';
+import React,{memo, useRef,useState} from 'react';
 import { Link } from 'react-router-dom';
 import Maintitle from '../title/title';
 import "./nav.scss";
 import { authService } from '../../../service/fbase';
 import { useHistory } from "react-router-dom";
 
-const Nav = ({ userobj }) => {
+const Nav = memo(({ userobj }) => {
     // sign out handle
     const history = useHistory();
     const signout = e => {
@@ -74,6 +74,6 @@ const Nav = ({ userobj }) => {
                 </div>
             </div>
     );
-};
+})
 
 export default Nav;
